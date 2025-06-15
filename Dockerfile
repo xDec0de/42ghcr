@@ -10,6 +10,7 @@ RUN apt update && apt install -y \
     python3-pip \
     make \
     git \
+    lcov \
     && python3 -m pip install --upgrade pip \
     && pip3 install norminette --break-system-packages \
     && apt clean
