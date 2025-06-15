@@ -6,6 +6,7 @@ on:
 
 jobs:
   publish:
+    if: "!startsWith(github.event.head_commit.message, '[ci-skip]')"
     runs-on: ubuntu-latest
     permissions:
       contents: read
