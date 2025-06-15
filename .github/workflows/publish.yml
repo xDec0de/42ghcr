@@ -23,18 +23,19 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract metadata (tags, labels)
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ghcr.io/${{ github.repository }}
-
-      - name: Get repository name in lowercase
+      - name: Get repository name in lowercase (no quotes)
         id: repo_lower
         uses: actions/github-script@v6
         with:
           script: |
-            return process.env.GITHUB_REPOSITORY.toLowerCase()
+            const repo = process.env.GITHUB_REPOSITORY.toLowerCase();
+            core.setOutput("result", repo);
+
+      - name: Extract metadata (tags, labels)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ steps.repo_lower.outputs.result }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
