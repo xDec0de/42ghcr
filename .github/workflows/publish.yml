@@ -29,6 +29,13 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository }}
 
+      - name: Get repository name in lowercase
+        id: repo_lower
+        uses: actions/github-script@v6
+        with:
+          script: |
+            return process.env.GITHUB_REPOSITORY.toLowerCase()
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
@@ -36,5 +43,5 @@ jobs:
           push: true
           tags: |
             ${{ steps.meta.outputs.tags }}
-            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ steps.repo_lower.outputs.result }}:latest
           labels: ${{ steps.meta.outputs.labels }}
