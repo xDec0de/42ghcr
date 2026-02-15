@@ -9,7 +9,7 @@ and validating projects for the 42 cursus, such as:
 
 - Build tools (`build-essential`, `make`, `gcc`, `g++`)
 - [Valgrind](https://valgrind.org) for memory analysis
-- Development libraries (`libreadline-dev`)
+- Development libraries (`libreadline-dev`, `xorg-dev`, `libx11-dev`, `libxext-dev`, `libbsd-dev` and `zlib1g-dev`)
 - Python 3 and pip
 - [Norminette](https://github.com/42School/norminette)
 - Git
